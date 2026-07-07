@@ -3,7 +3,9 @@ variable "resource_group_name" {
 }
 
 variable "location" {
-  default = "Central India"
+  description = "Azure Region"
+  type        = string
+  default     = "eastus"
 }
 
 variable "vnet_name" {
