@@ -6,13 +6,19 @@ pool:
 
 steps:
 - task: AzureCLI@2
-  displayName: Terraform Apply
   inputs:
     azureSubscription: 'Azure-Service-Connection'
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
     inlineScript: |
+      echo "===== Azure Account ====="
       az account show
+
+      echo "===== Current Subscription ====="
+      az account show --query "{Subscription:id, Name:name, Tenant:tenantId}"
+
+      echo "===== Resource Groups ====="
+      az group list -o table
 
       wget https://releases.hashicorp.com/terraform/1.9.8/terraform_1.9.8_linux_amd64.zip
       unzip -o terraform_1.9.8_linux_amd64.zip
@@ -21,8 +27,4 @@ steps:
       terraform version
       terraform init
       terraform validate
-
-      # Import the Resource Group if it already exists
-      terraform import azurerm_resource_group.rg "/subscriptions/35a79d64-7b96-485b-9294-e42ada19750a/resourceGroups/DevOps-RG" || true
-
       terraform apply -auto-approve
