@@ -1,23 +1,5 @@
-variable "resource_group_name" {
-  default = "DevOps-RG"
-}
-
 variable "location" {
-  description = "Azure Region"
-  type        = string
-  default     = "eastus"
-}
-
-variable "vnet_name" {
-  default = "DevOps-VNet"
-}
-
-variable "subnet_name" {
-  default = "DevOps-Subnet"
-}
-
-variable "vm_name" {
-  default = "DevOpsVM"
+  default = "eastus"
 }
 
 variable "admin_username" {
@@ -25,5 +7,5 @@ variable "admin_username" {
 }
 
 variable "admin_password" {
-  default = "Password@12345"
+  default = "Password@123456"
 }
