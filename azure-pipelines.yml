@@ -9,8 +9,8 @@ steps:
   displayName: Terraform Apply
   inputs:
     azureSubscription: 'Azure-Service-Connection'
-    scriptType: bash
-    scriptLocation: inlineScript
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
     inlineScript: |
       az account show
 
@@ -22,7 +22,7 @@ steps:
       terraform init
       terraform validate
 
-      # Import Resource Group if it already exists
+      # Import the Resource Group if it already exists
       terraform import azurerm_resource_group.rg "/subscriptions/35a79d64-7b96-485b-9294-e42ada19750a/resourceGroups/DevOps-RG" || true
 
       terraform apply -auto-approve
